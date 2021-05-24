@@ -15,7 +15,7 @@
 - Clearly defined API endpoints with sample responses
 
 - Clearly defined database schemas
-    - 
+    
 
 - Data Model (Back End)
     - /__tests__
@@ -56,5 +56,14 @@
             - /BooksPage.js
         -/utils
             - /book-api.js
+
+
+FE Routes
+    - '/'
+    - /'up'
+    - /'ballot:id'
+    - /'about'
+
+
         
 
