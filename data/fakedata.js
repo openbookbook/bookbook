@@ -12,19 +12,22 @@ const fakeSuggestions = [
     id: 1,
     username: 'bookperson123',
     title: 'The Fish Warrior',
-    ballotId: 1
+    ballotId: 1,
+    gbooks: 'whatever'
   },
   {
     id: 2,
     username: 'bookperson123',
     title: 'Crying in H-Mart',
-    ballotId: 1
+    ballotId: 1,
+    gbooks: 'whatever'
   },
   {
     id: 3,
     username: 'bookperson123',
     title: 'The Confederacy of Dunces',
-    ballotId: 1
+    ballotId: 1,
+    gbooks: 'whatever'
   }
 ];
 

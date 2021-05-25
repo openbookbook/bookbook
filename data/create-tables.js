@@ -10,18 +10,19 @@ async function run() {
 
     // run a query to create tables
     await client.query(` 
-      CREATE TABLE users (
-        id SERIAL PRIMARY KEY NOT NULL,
-        username VARCHAR(512) NOT NULL,
-        ballot_id INTEGER NOT NULL REFERENCES ballots(id),
-        password VARCHAR(512) DEFAULT NULL
-      );
     
       CREATE TABLE ballots  (
         id SERIAL PRIMARY KEY NOT NULL,
         admin_code VARCHAR(512) NOT NULL,
         name VARCHAR(512) NOT NULL,
         vote_code VARCHAR(512) DEFAULT NULL
+      );
+
+      CREATE TABLE users (
+        id SERIAL PRIMARY KEY NOT NULL,
+        username VARCHAR(512) NOT NULL,
+        ballot_id INTEGER NOT NULL REFERENCES ballots(id),
+        password VARCHAR(512) DEFAULT NULL
       );
 
       CREATE TABLE suggestions (
