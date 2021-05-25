@@ -10,28 +10,39 @@ async function run() {
 
     // run a query to create tables
     await client.query(` 
+    
+      CREATE TABLE ballots  (
+        id SERIAL PRIMARY KEY NOT NULL,
+        admin_code VARCHAR(512) NOT NULL,
+        name VARCHAR(512) NOT NULL,
+        vote_code VARCHAR(512) DEFAULT NULL
+      );
+
       CREATE TABLE users (
         id SERIAL PRIMARY KEY NOT NULL,
-        name VARCHAR(512) NOT NULL,
-        email VARCHAR(512) NOT NULL,
-        hash VARCHAR(512) NOT NULL
+        username VARCHAR(512) NOT NULL,
+        ballot_id INTEGER NOT NULL REFERENCES ballots(id),
+        password VARCHAR(512) DEFAULT NULL
       );
-    
-      CREATE TABLE cats (
+
+      CREATE TABLE suggestions (
         id SERIAL PRIMARY KEY NOT NULL,
-        name VARCHAR(512) NOT NULL,
-        type VARCHAR(128) NOT NULL,
-        url VARCHAR(1024) NOT NULL,
-        year INTEGER NOT NULL,
-        lives INTEGER NOT NULL,
-        is_sidekick BOOLEAN DEFAULT FALSE NOT NULL,
-        user_id INTEGER NOT NULL REFERENCES users(id)
+        user_id INTEGER REFERENCES users(id),
+        ballot_id INTEGER NOT NULL REFERENCES ballots(id),
+        gbooks VARCHAR(512) NOT NULL
+      );
+
+      CREATE TABLE votes (
+        id SERIAL PRIMARY KEY NOT NULL,
+        user_id INTEGER NOT NULL REFERENCES users(id),
+        ballot_id INTEGER NOT NULL REFERENCES ballots(id),
+        vote VARCHAR(512) NOT NULL
       );
     `);
 
     console.log('create tables complete');
   }
-  catch(err) {
+  catch (err) {
     // problem? let's see the error...
     console.log(err);
   }
