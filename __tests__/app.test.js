@@ -137,6 +137,13 @@ describe('API Routes', () => {
       expect(response.body).toEqual(suggestion);
     });
 
+    it('GET users by ballotid to /api/:ballotid/users', async () => {
+      const response = await request
+        .get(`/api/${ballot.id}/users`);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual([]);
+    });
+
 
   });
 });
