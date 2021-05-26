@@ -112,14 +112,6 @@ it('GET ballot by id to /api/ballots/:id', async () => {
   expect(response.body).toEqual(updatedBallot);
 });
 
-it('GET ballot by id to /api/ballots/:id', async () => {
-  const response = await request
-    .get('/api/ballots/3')
-    .send(updatedBallot);
-  expect(response.status).toBe(200);
-  expect(response.body).toEqual(updatedBallot);
-});
-
 it('POST vote to /api/votes', async () => {
   const response = await request
     .post('/api/votes')
