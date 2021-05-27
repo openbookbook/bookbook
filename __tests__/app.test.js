@@ -144,6 +144,21 @@ describe('API Routes', () => {
       expect(response.body).toEqual([]);
     });
 
+    it('GET suggestions by ballotid to /api/:ballotid/suggestions', async () => {
+      const response = await request
+        .get(`/api/${ballot.id}/suggestions`);
+      console.log(response.body);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual([]);
+    });
+
+    it('GET votes by ballotid to /api/:ballotid/votes', async () => {
+      const response = await request
+        .get(`/api/${ballot.id}/votes`);
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual([vote]);
+    });
+
 
   });
 });
