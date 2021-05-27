@@ -158,6 +158,19 @@ describe('API Routes', () => {
       expect(response.body).toEqual([vote]);
     });
 
+    it('PUT/UPDATE vote from /api/votes/:id', async () => {
+      const response = await request
+        .post('/api/votes/')
+        .send(vote);
+      vote = response.body;
+      vote.vote = '6g234g20';
+      const response2 = await request
+        .put(`/api/votes/${vote.id}`)
+        .send(vote);
+      expect(response2.status).toBe(200);
+      expect(response2.body).toEqual(vote);
+    });
+
 
   });
 });
