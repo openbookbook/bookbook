@@ -16,6 +16,7 @@ async function run() {
         admin_code VARCHAR(512) NOT NULL,
         name VARCHAR(512) NOT NULL,
         vote_code VARCHAR(512) DEFAULT NULL
+        end_date VARCHAR(512) DEFAULT NULL
       );
 
       CREATE TABLE users (
