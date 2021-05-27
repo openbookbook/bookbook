@@ -147,7 +147,6 @@ describe('API Routes', () => {
     it('GET suggestions by ballotid to /api/:ballotid/suggestions', async () => {
       const response = await request
         .get(`/api/${ballot.id}/suggestions`);
-      console.log(response.body);
       expect(response.status).toBe(200);
       expect(response.body).toEqual([]);
     });
