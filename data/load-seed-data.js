@@ -1,8 +1,9 @@
+/* eslint-disable indent */
 /* eslint-disable no-console */
 import client from '../lib/client.js';
 // import our seed data:
-import users from './users.js';
-import cats from './cats.js';
+
+import { fakeBallots, fakeSuggestions, fakeVotes, fakeUsers } from './fakedata.js';
 
 run();
 
@@ -11,36 +12,60 @@ async function run() {
   try {
 
     const data = await Promise.all(
-      users.map(user => {
+      fakeBallots.map(ballot => {
         return client.query(`
-          INSERT INTO users (name, email, hash)
+          INSERT INTO ballots (name, admin_code, vote_code)
           VALUES ($1, $2, $3)
-          RETURNING *;
+          RETURNING id, name, admin_code as "adminCode", vote_code as "voteCode";
         `,
-        [user.name, user.email, user.password]);
+          [ballot.name, ballot.adminCode, ballot.voteCode]);
       })
     );
-    
-    const user = data[0].rows[0];
+
+    const ballot = data[0].rows[0];
+
+    const users = await Promise.all(
+      fakeUsers.map(user => {
+        return client.query(`
+        INSERT INTO users (username, ballot_id, password)
+        VALUES ($1, $2, $3)
+        RETURNING id, username, password, ballot_id as "ballotId";
+        `,
+          [user.username, ballot.id, user.password]);
+      })
+    );
+
+    const user = users[0].rows[0];
 
     await Promise.all(
-      cats.map(cat => {
+      fakeSuggestions.map(suggestion => {
         return client.query(`
-        INSERT INTO cats (name, type, url, year, lives, is_sidekick, user_id)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        INSERT INTO suggestions (user_id, ballot_id, gbooks)
+        VALUES ($1, $2, $3)
         `,
-        [cat.name, cat.type, cat.url, cat.year, cat.lives, cat.isSidekick, user.id]);
+          [user.id, ballot.id, suggestion.gbooks]);
+
       })
     );
-    
+
+    await Promise.all(
+      fakeVotes.map(vote => {
+        return client.query(`
+        INSERT INTO votes (user_id, ballot_id, vote)
+        VALUES ($1, $2, $3)
+        `,
+          [user.id, ballot.id, vote.vote]);
+      })
+    );
+
 
     console.log('seed data load complete');
   }
-  catch(err) {
+  catch (err) {
     console.log(err);
   }
   finally {
     client.end();
   }
-    
+
 }
