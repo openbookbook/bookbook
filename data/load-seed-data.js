@@ -17,8 +17,7 @@ async function run() {
           INSERT INTO ballots (name, admin_code, vote_code)
           VALUES ($1, $2, $3)
           RETURNING id, name, admin_code as "adminCode", vote_code as "voteCode";
-        `,
-          [ballot.name, ballot.adminCode, ballot.voteCode]);
+        `, [ballot.name, ballot.adminCode, ballot.voteCode]);
       })
     );
 
@@ -27,11 +26,10 @@ async function run() {
     const users = await Promise.all(
       fakeUsers.map(user => {
         return client.query(`
-        INSERT INTO users (username, ballot_id, password)
-        VALUES ($1, $2, $3)
-        RETURNING id, username, password, ballot_id as "ballotId";
-        `,
-          [user.username, ballot.id, user.password]);
+          INSERT INTO users (username, ballot_id, password)
+          VALUES ($1, $2, $3)
+          RETURNING id, username, password, ballot_id as "ballotId";
+        `, [user.username, ballot.id, user.password]);
       })
     );
 
@@ -40,24 +38,20 @@ async function run() {
     await Promise.all(
       fakeSuggestions.map(suggestion => {
         return client.query(`
-        INSERT INTO suggestions (user_id, ballot_id, gbooks)
-        VALUES ($1, $2, $3)
-        `,
-          [user.id, ballot.id, suggestion.gbooks]);
-
+          INSERT INTO suggestions (user_id, ballot_id, gbooks)
+          VALUES ($1, $2, $3)
+        `, [user.id, ballot.id, suggestion.gbooks]);
       })
     );
 
     await Promise.all(
       fakeVotes.map(vote => {
         return client.query(`
-        INSERT INTO votes (user_id, ballot_id, vote)
-        VALUES ($1, $2, $3)
-        `,
-          [user.id, ballot.id, vote.vote]);
+          INSERT INTO votes (user_id, ballot_id, vote)
+          VALUES ($1, $2, $3)
+        `, [user.id, ballot.id, vote.vote]);
       })
     );
-
 
     console.log('seed data load complete');
   }

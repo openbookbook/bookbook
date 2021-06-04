@@ -10,7 +10,6 @@ async function run() {
 
     // run a query to create tables
     await client.query(` 
-    
       CREATE TABLE ballots  (
         id SERIAL PRIMARY KEY NOT NULL,
         admin_code VARCHAR(512) NOT NULL,
