@@ -10,33 +10,33 @@ async function run() {
 
     // run a query to create tables
     await client.query(` 
+      CREATE TABLE clubs (
+        id SERIAL PRIMARY KEY NOT NULL,
+        name VARCHAR(512) NOT NULL
+      );
+
       CREATE TABLE ballots  (
         id SERIAL PRIMARY KEY NOT NULL,
-        admin_code VARCHAR(512) NOT NULL,
+        club_id INTEGER REFERENCES clubs(id),
         name VARCHAR(512) NOT NULL,
+        admin_code VARCHAR(512) NOT NULL,
         vote_code VARCHAR(512) DEFAULT NULL,
         end_date VARCHAR(512) DEFAULT NULL
       );
 
       CREATE TABLE users (
         id SERIAL PRIMARY KEY NOT NULL,
-        username VARCHAR(512) NOT NULL,
         ballot_id INTEGER NOT NULL REFERENCES ballots(id),
-        password VARCHAR(512) DEFAULT NULL
+        username VARCHAR(512) NOT NULL,
+        password VARCHAR(512) DEFAULT NULL,
+        vote VARCHAR(512)
       );
 
       CREATE TABLE suggestions (
         id SERIAL PRIMARY KEY NOT NULL,
         user_id INTEGER REFERENCES users(id),
         ballot_id INTEGER NOT NULL REFERENCES ballots(id),
-        gbooks VARCHAR(512) NOT NULL
-      );
-
-      CREATE TABLE votes (
-        id SERIAL PRIMARY KEY NOT NULL,
-        user_id INTEGER NOT NULL REFERENCES users(id),
-        ballot_id INTEGER NOT NULL REFERENCES ballots(id),
-        vote VARCHAR(512) NOT NULL
+        google_books VARCHAR(512) NOT NULL
       );
     `);
 
