@@ -1,8 +1,8 @@
 const fakeBallots = [
   {
     id: 1,
-    adminCode: '1234',
     name: 'bookclub',
+    adminCode: '1234',
     voteCode: null
   }
 ];
@@ -13,21 +13,21 @@ const fakeSuggestions = [
     username: 'bookperson123',
     title: 'The Fish Warrior',
     ballotId: 1,
-    gbooks: '7lLVCQAAQBAJ'
+    googleBooks: '7lLVCQAAQBAJ'
   },
   {
     id: 2,
     username: 'bookperson123',
     title: 'Crying in H-Mart',
     ballotId: 1,
-    gbooks: 'maBtDwAAQBAJ'
+    googleBooks: 'maBtDwAAQBAJ'
   },
   {
     id: 3,
     username: 'bookperson123',
     title: 'The Confederacy of Dunces',
     ballotId: 1,
-    gbooks: '-8CbDwAAQBAJ'
+    googleBooks: '-8CbDwAAQBAJ'
   }
 ];
 

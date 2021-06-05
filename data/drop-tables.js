@@ -10,7 +10,7 @@ async function run() {
     await client.query(`
       DROP TABLE IF EXISTS users CASCADE;
       DROP TABLE IF EXISTS suggestions;
-      DROP TABLE IF EXISTS votes;
+      DROP TABLE IF EXISTS clubs CASCADE;
       DROP TABLE IF EXISTS ballots CASCADE;
     `);
 

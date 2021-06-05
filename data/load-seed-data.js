@@ -3,7 +3,7 @@
 import client from '../lib/client.js';
 // import our seed data:
 
-import { fakeBallots, fakeSuggestions, fakeVotes, fakeUsers } from './fakedata.js';
+import { fakeBallots, fakeSuggestions, fakeVotes, fakeUsers } from './test-data.js';
 
 run();
 
@@ -11,7 +11,7 @@ async function run() {
 
   try {
 
-    const data = await Promise.all(
+    const ballots = await Promise.all(
       fakeBallots.map(ballot => {
         return client.query(`
           INSERT INTO ballots (name, admin_code, vote_code)
@@ -21,7 +21,7 @@ async function run() {
       })
     );
 
-    const ballot = data[0].rows[0];
+    const ballot = ballots[0].rows[0];
 
     const users = await Promise.all(
       fakeUsers.map(user => {
@@ -38,18 +38,9 @@ async function run() {
     await Promise.all(
       fakeSuggestions.map(suggestion => {
         return client.query(`
-          INSERT INTO suggestions (user_id, ballot_id, gbooks)
+          INSERT INTO suggestions (user_id, ballot_id, google_books)
           VALUES ($1, $2, $3)
-        `, [user.id, ballot.id, suggestion.gbooks]);
-      })
-    );
-
-    await Promise.all(
-      fakeVotes.map(vote => {
-        return client.query(`
-          INSERT INTO votes (user_id, ballot_id, vote)
-          VALUES ($1, $2, $3)
-        `, [user.id, ballot.id, vote.vote]);
+        `, [user.id, ballot.id, suggestion.googleBooks]);
       })
     );
 
