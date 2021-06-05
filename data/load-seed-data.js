@@ -3,7 +3,7 @@
 import client from '../lib/client.js';
 // import our seed data:
 
-import { fakeBallots, fakeSuggestions, fakeVotes, fakeUsers } from './test-data.js';
+import { fakeBallots, fakeSuggestions, fakeUsers } from './test-data.js';
 
 run();
 
