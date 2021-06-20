@@ -19,6 +19,7 @@ async function run() {
         id SERIAL PRIMARY KEY NOT NULL,
         club_id INTEGER REFERENCES clubs(id),
         name VARCHAR(512) NOT NULL,
+        voting_method VARCHAR(512) NOT NULL DEFAULT "default",
         admin_code VARCHAR(512) NOT NULL,
         vote_code VARCHAR(512) DEFAULT NULL,
         end_date VARCHAR(512) DEFAULT NULL
