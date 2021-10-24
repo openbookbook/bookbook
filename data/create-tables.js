@@ -7,7 +7,6 @@ run();
 async function run() {
 
   try {
-
     // run a query to create tables
     await client.query(` 
       CREATE TABLE clubs (
@@ -19,7 +18,8 @@ async function run() {
         id SERIAL PRIMARY KEY NOT NULL,
         club_id INTEGER REFERENCES clubs(id),
         name VARCHAR(512) NOT NULL,
-        voting_method VARCHAR(512) NOT NULL DEFAULT "default",
+        voting_method VARCHAR(512) NOT NULL DEFAULT 'default',
+        candidate_type VARCHAR(512) DEFAULT 'book',
         admin_code VARCHAR(512) NOT NULL,
         vote_code VARCHAR(512) DEFAULT NULL,
         end_date VARCHAR(512) DEFAULT NULL
@@ -51,5 +51,4 @@ async function run() {
     // success or failure, need to close the db connection
     client.end();
   }
-
 }
