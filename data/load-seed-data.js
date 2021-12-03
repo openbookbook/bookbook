@@ -1,8 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable no-console */
 import client from '../lib/client.js';
-// import our seed data:
-
 import { fakeBallots, fakeSuggestions, fakeUsers } from './test-data.js';
 
 run();
@@ -10,7 +8,6 @@ run();
 async function run() {
 
   try {
-
     const ballots = await Promise.all(
       fakeBallots.map(ballot => {
         return client.query(`
@@ -38,9 +35,9 @@ async function run() {
     await Promise.all(
       fakeSuggestions.map(suggestion => {
         return client.query(`
-          INSERT INTO suggestions (user_id, ballot_id, google_books)
-          VALUES ($1, $2, $3)
-        `, [user.id, ballot.id, suggestion.googleBooks]);
+          INSERT INTO suggestions (user_id, ballot_id, google_books, description)
+          VALUES ($1, $2, $3, $4)
+        `, [user.id, ballot.id, suggestion.googleBooks, suggestion.description]);
       })
     );
 

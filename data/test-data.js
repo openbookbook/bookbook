@@ -31,29 +31,11 @@ const fakeSuggestions = [
   }
 ];
 
-const fakeVotes = [
-
-  {
-    username: 'daniella',
-    ballotId: 1,
-    id: 123,
-    vote: '3 1 2'
-  },
-  {
-    username: 'austin',
-    ballotId: 1,
-    id: 456,
-    vote: '1 3 2'
-  },
-
-];
-
 const fakeUsers = [
-
   {
     username: 'bookdude',
     password: 'iluvbooks'
   }
 ];
 
-export { fakeVotes, fakeSuggestions, fakeBallots, fakeUsers };
+export { fakeSuggestions, fakeBallots, fakeUsers };
