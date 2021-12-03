@@ -13,21 +13,21 @@ const fakeSuggestions = [
     username: 'bookperson123',
     title: 'The Fish Warrior',
     ballotId: 1,
-    googleBooks: '7lLVCQAAQBAJ'
+    suggestion: '7lLVCQAAQBAJ'
   },
   {
     id: 2,
     username: 'bookperson123',
     title: 'Crying in H-Mart',
     ballotId: 1,
-    googleBooks: 'maBtDwAAQBAJ'
+    suggestion: 'maBtDwAAQBAJ'
   },
   {
     id: 3,
     username: 'bookperson123',
     title: 'The Confederacy of Dunces',
     ballotId: 1,
-    googleBooks: '-8CbDwAAQBAJ'
+    suggestion: '-8CbDwAAQBAJ'
   }
 ];
 

@@ -35,9 +35,9 @@ async function run() {
     await Promise.all(
       fakeSuggestions.map(suggestion => {
         return client.query(`
-          INSERT INTO suggestions (user_id, ballot_id, google_books, description)
+          INSERT INTO suggestions (user_id, ballot_id, suggestion)
           VALUES ($1, $2, $3, $4)
-        `, [user.id, ballot.id, suggestion.googleBooks, suggestion.description]);
+        `, [user.id, ballot.id, suggestion.suggestion]);
       })
     );
 

@@ -36,8 +36,7 @@ async function run() {
         id SERIAL PRIMARY KEY NOT NULL,
         user_id INTEGER REFERENCES users(id),
         ballot_id INTEGER NOT NULL REFERENCES ballots(id),
-        description TEXT,
-        google_books VARCHAR(512)
+        suggestion TEXT NOT NULL
       );
     `);
 
