@@ -5,7 +5,6 @@ import client from '../lib/client.js';
 run();
 
 async function run() {
-
   try {
     // run a query to create tables
     await client.query(` 
@@ -37,7 +36,7 @@ async function run() {
         id SERIAL PRIMARY KEY NOT NULL,
         user_id INTEGER REFERENCES users(id),
         ballot_id INTEGER NOT NULL REFERENCES ballots(id),
-        google_books VARCHAR(512) NOT NULL
+        suggestion TEXT NOT NULL
       );
     `);
 

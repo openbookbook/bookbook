@@ -9,5 +9,11 @@ Annaleigh, Austin, Clem, Culi, Daniella
  - jwt
 
 ## setup
+
 ## data model
+
 ## api routes
+### /api/clubs/
+### /api/ballots/
+### /api/users/
+### /api/suggestions/
